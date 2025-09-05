@@ -1,0 +1,89 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            //  path to interpecter:
+            //  ./.tox/py312-test-instrumentation-botocore-0/bin/python3
+            "name": "UT: botocore",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "pytest",
+            "args": [
+                "${workspaceFolder}/instrumentation/opentelemetry-instrumentation-botocore/tests/test_botocore_lambda.py", // adjust path
+                "-vv"
+            ],
+            "justMyCode": false
+        },
+        {
+            "name": "zOTel",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/zOTel/v-otel/bin/opentelemetry-instrument",
+            "cwd": "${workspaceFolder}/zOTel",
+            "args": [
+                "${workspaceFolder}/zOTel/v-otel/bin/python",
+                "${workspaceFolder}/zOTel/main.py"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "env": {
+                "OTEL_SERVICE_NAME": "zOTel-PyContrib",
+                "OTEL_EXPERIMENTAL_RESOURCE_DETECTORS": "host,os,process",
+                "OTEL_TRACES_EXPORTER": "otlp,console",
+                "OTEL_EXPORTER_OTLP_TRACES_ENDPOINT": "http://127.0.0.1:4317/v1/traces",
+            }
+        },
+        {
+            "name": "zOTel with hooks",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/zOTel/main.py",
+            "cwd": "${workspaceFolder}/zOTel",
+            "python": "${workspaceFolder}/zOTel/v-otel/bin/python",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "env": {
+                "OTEL_SERVICE_NAME": "zOTel-WithHook-PyContrib",
+                "OTEL_EXPERIMENTAL_RESOURCE_DETECTORS": "host,os,process",
+                "OTEL_TRACES_EXPORTER": "otlp,console",
+                "OTEL_EXPORTER_OTLP_TRACES_ENDPOINT": "http://127.0.0.1:4317/v1/traces",
+            }
+        },
+        {
+            "name": "Dbg opentelemetry-bootstrap -a install",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/.venv/bin/opentelemetry-bootstrap",
+            "args": [
+                "-a",
+                "install"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "env": {
+                "OTEL_SERVICE_NAME": "Mcp-Client-PyLaunchJson",
+                "OTEL_TRACES_EXPORTER": "otlp",
+                "OTEL_EXPORTER_OTLP_TRACES_ENDPOINT": "http://xyz-jaeger-100:4317/v1/traces",
+            }
+        },
+        {
+            "name": "Python: Attach to MCP Server Foo",
+            "type": "debugpy",
+            "request": "attach",
+            "connect": {
+                "host": "localhost",
+                "port": 5678
+            },
+            "pathMappings": [
+                {
+                    "localRoot": "${workspaceFolder}/../python-mcp-server-foo",
+                    "remoteRoot": "."
+                }
+            ],
+            "justMyCode": false
+        }
+    ]
+}
