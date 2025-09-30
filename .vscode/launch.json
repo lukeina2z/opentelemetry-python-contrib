@@ -12,7 +12,7 @@
             "request": "launch",
             "module": "pytest",
             "args": [
-                "${workspaceFolder}/instrumentation/opentelemetry-instrumentation-botocore/tests/test_botocore_sfns.py", // adjust path
+                "${workspaceFolder}/instrumentation/opentelemetry-instrumentation-botocore/tests/test_botocore_lambda.py", // adjust path
                 "-vv"
             ],
             "justMyCode": false
