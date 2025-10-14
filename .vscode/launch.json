@@ -1,0 +1,22 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            //  path to interpecter:
+            //  ./.tox/py313-test-instrumentation-mcp-latest/bin/python
+            "name": "UT: botocore",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "pytest",
+            "python": "${workspaceFolder}/.tox/py313-test-instrumentation-mcp-latest/bin/python",
+            "args": [
+                "${workspaceFolder}/instrumentation-genai/opentelemetry-instrumentation-mcp/tests/test_instrumentor.py", // adjust path
+                "-vv"
+            ],
+            "justMyCode": false
+        }
+    ]
+}
