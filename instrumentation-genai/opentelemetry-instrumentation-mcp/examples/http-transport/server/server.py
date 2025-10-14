@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """MCP server with HTTP transport using SSE."""
 
+import boto3  # type: ignore[import-untyped]
 import requests
-import boto3
 from mcp.server.fastmcp import FastMCP
 
 
@@ -16,13 +16,16 @@ def call_http(url: str) -> str:
 
 def call_s3() -> str:
     try:
-        s3_client = boto3.client("s3")
-        response = s3_client.list_buckets()
-        buckets = ", ".join([bucket["Name"] for bucket in response.get("Buckets", [])])
+        s3_client = boto3.client("s3")  # type: ignore[no-untyped-call]
+        response = s3_client.list_buckets()  # type: ignore[no-untyped-call]
+        bucket_list = response.get("Buckets", [])  # type: ignore[union-attr]
+        buckets = ", ".join(
+            [str(bucket.get("Name", "")) for bucket in bucket_list]  # type: ignore[union-attr]
+        )
         if not buckets:
             buckets = "No buckets found"
         return f"S3 call succeeded. Buckets: {buckets}"
-    except Exception as exc:
+    except Exception as exc:  # pylint: disable=broad-exception-caught
         return f"S3 call failed: {str(exc)}"
 
 
