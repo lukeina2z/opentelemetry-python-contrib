@@ -10,15 +10,12 @@ tox -e  py311-test-instrumentation-mcp-latest
 tox -e  py312-test-instrumentation-mcp-oldest  
 tox -e  py312-test-instrumentation-mcp-latest  
 tox -e  py313-test-instrumentation-mcp-oldest  
-
 tox -e  py313-test-instrumentation-mcp-latest
-
 tox -e  pypy3-test-instrumentation-mcp-oldest  
 tox -e  pypy3-test-instrumentation-mcp-latest  
+
 tox -e  lint-instrumentation-mcp
-
 tox -e spellcheck
-
 tox -e ruff
 
 pushd ./instrumentation-genai/opentelemetry-instrumentation-mcp
