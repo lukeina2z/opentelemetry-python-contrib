@@ -13,7 +13,7 @@ server_params = StdioServerParameters(
     env={
         "OTEL_RESOURCE_ATTRIBUTES": "service.name=mcp-server",
         "OTEL_TRACES_EXPORTER": "otlp",
-        "OTEL_EXPORTER_OTLP_TRACES_ENDPOINT": "http://xyz-jaeger-100:4317/v1/traces",
+        "OTEL_EXPORTER_OTLP_TRACES_ENDPOINT": "http://localhost:4317/v1/traces",
     },
 )
 
@@ -46,6 +46,11 @@ async def run():
                 result = await session.call_tool(
                     "pingweb", arguments={"url": "http://www.aws.com"}
                 )
+                print(result.content)
+
+                # Call awssdkcall tool
+                print("CALL AWSSDKCALL TOOL")
+                result = await session.call_tool("awssdkcall")
                 print(result.content)
 
                 # Call a tool
