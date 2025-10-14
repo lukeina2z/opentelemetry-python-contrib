@@ -20,7 +20,7 @@ dependencies = [
     "anyio>=4.5",
     "click>=8.2.0",
     "httpx>=0.27",
-    "mcp[cli]",
+    "mcp[cli]>=1.17.0",
     "requests>=2.32.5",
 ]
 
