@@ -22,7 +22,7 @@ cd server
 
 OTEL_SERVICE_NAME=mcp-server-PyHttp \
   OTEL_TRACES_EXPORTER=otlp \
-  OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=http://xyz-jaeger-100:4317/v1/traces \
+  OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=http://localhost:4317/v1/traces \
   uv run opentelemetry-instrument python ./server.py
 ```
 
@@ -48,7 +48,7 @@ cd client
 
 OTEL_SERVICE_NAME=mcp-client-PyHttp \
   OTEL_TRACES_EXPORTER=otlp \
-  OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=http://xyz-jaeger-100:4317/v1/traces \
+  OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=http://localhost:4317/v1/traces \
   uv run opentelemetry-instrument python ./client.py
 ```
 

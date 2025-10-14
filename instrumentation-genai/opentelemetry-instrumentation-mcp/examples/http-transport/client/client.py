@@ -24,6 +24,16 @@ async def main():
                 tools = await session.list_tools()
                 print(f"Available tools: {[t.name for t in tools.tools]}")
 
+                # Call pingweb tool
+                result = await session.call_tool(
+                    "pingweb", arguments={"url": "http://www.aws.com"}
+                )
+                print(f"pingweb result: {result.content}")
+
+                # Call awssdkcall tool
+                result = await session.call_tool("awssdkcall")
+                print(f"awssdkcall result: {result.content}")
+
                 # Call tool
                 result = await session.call_tool(
                     "add", arguments={"a": 5, "b": 3}
