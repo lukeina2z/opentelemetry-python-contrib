@@ -7,13 +7,14 @@
         {
             //  path to interpecter:
             //  ./.tox/py313-test-instrumentation-mcp-latest/bin/python
-            "name": "UT: botocore",
+            "name": "UT",
             "type": "debugpy",
             "request": "launch",
             "module": "pytest",
             "python": "${workspaceFolder}/.tox/py313-test-instrumentation-mcp-latest/bin/python",
             "args": [
-                "${workspaceFolder}/instrumentation-genai/opentelemetry-instrumentation-mcp/tests/test_instrumentor.py", // adjust path
+                // "${workspaceFolder}/instrumentation-genai/opentelemetry-instrumentation-mcp/tests/test_instrumentor.py", // adjust path
+                "${workspaceFolder}/instrumentation-genai/opentelemetry-instrumentation-mcp/tests/test_session_wrapper.py",
                 "-vv"
             ],
             "justMyCode": false
