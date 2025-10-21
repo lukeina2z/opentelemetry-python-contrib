@@ -168,8 +168,10 @@ class McpInstrumentor(BaseInstrumentor):
                 message_json = message.model_dump(
                     by_alias=True, mode="json", exclude_none=True
                 )
-            except Exception as exc:
-                _LOG.warning("Failed to serialize message for tracing: %s", exc)
+            except Exception as exc:  # pylint: disable=broad-exception-caught
+                _LOG.warning(
+                    "Failed to serialize message for tracing: %s", exc
+                )
                 return await wrapped(*args, **kwargs)
 
             # Ensure _meta field exists for trace context
